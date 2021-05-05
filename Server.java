@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Server{
 
@@ -8,12 +9,30 @@ public class Server{
     Job workingJob; //job currently being worked on in the server
     boolean idle; //stores whether the server is working or not
     int arr;
+    String queueType;
 
-    public Server(){
-        queue = new ArrayList<Job>();
+    public Server(String queueSelection, ArrayList<Job> new_queue){
+        queueType = queueSelection;
+
+        if(queueSelection.equals("FIFO")){
+            //set up FIFO
+        }
+
+        else if(queueSelection.equals("Random")){
+            //set up Random
+        }
+
+        else if(queueSelection.equals("shortest")){
+            new_queue.sort(Comparator.comparing(Job::getSize)); //sort the jobs in order of job size
+            queue=new_queue;
+        }
+
         curTime = 0;
         departure = 0;
         idle = true;
+
+        //First thing the server does is start working on the first job
+        removeJob();
     }
 
     public void addJob(Job newJob){
@@ -24,16 +43,41 @@ public class Server{
             arr = workingJob.getArr();
         }
 
-        else { //otherwise, add it to the end of the queue
-            queue.add(newJob);
+        else { //otherwise, add it the queue
+            if(queueType.equals("FIFO") || queueType.equals("Random")) {
+                //if the queue is FIFO or random, just add the job to the end of the queue
+                queue.add(newJob);
+            }
+            else{
+                queue.add(newJob);
+                int i = queue.indexOf(newJob);
+                int j = queue.indexOf(newJob) - 1;
+                while(newJob.getSize()<queue.get(j).getSize()){
+                    Job holder = queue.get(j);
+                    queue.set(j, newJob);
+                    queue.set(i,holder);
+                    j--;
+                    i--;
+
+                    if(i == 0){
+                        break;
+                    }
+                }
+                /*for(int k = 0; k<queue.size(); k++){
+                    System.out.print(queue.get(k).getSize()+" ");
+                }
+                System.out.println();*/
+            }
         }
     }
 
     public void removeJob(){ //start work on the first job in the queue
         Job workingJob = queue.remove(0);
+        curTime = workingJob.getArr();
         departure = curTime+workingJob.getSize();
         arr = workingJob.getArr();
     }
+
 
     public int getTime(){
         return curTime;
