@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,7 +6,6 @@ public class RunSimulation {
     static int arrTime;
     static int size;
     static int numJobs;
-    //static double meanNum;
     static double meanResp;
     static double sizeProb;
     static double arrProb;
@@ -23,37 +21,6 @@ public class RunSimulation {
         }
         else{
             runSimulation2();}
-
-        /*numJobs = 100000;
-        Server server = new Server();
-
-        //generate information for first job
-        size = generateRandom(sizeProb);
-        arrTime=0;
-        processArrival(server);
-
-        while(numJobs>0){
-            if(server.getState()){ //the server is currently idle
-                processArrival(server); //process a new arrival
-            }
-
-            else if (arrTime < server.getDeparture()) { //next arrival is before next departure
-                processArrival(server); //process a new arrival
-            }
-
-            else { //next arrival is after or equal to next departure
-                if(arrTime == server.getDeparture()){
-                    processDeparture(server);
-                    processArrival(server);
-                }
-
-                else{processDeparture(server); }
-            }
-        }
-
-        System.out.println("The mean number of jobs in the system was: " + meanNum/(98000));
-        System.out.println("The mean response time of the system was: " + meanResp/(98000-server.queueSize()));
-        System.out.println("Current queue size: " + server.queueSize());*/
     }
 
     public static void runSimulation1() {
