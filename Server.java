@@ -29,10 +29,10 @@ public class Server{
 
         curTime = 0;
         departure = 0;
-        idle = true;
 
         //First thing the server does is start working on the first job
         removeJob();
+        idle = false;
     }
 
     public void addJob(Job newJob){
