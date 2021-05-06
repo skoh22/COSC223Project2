@@ -78,8 +78,7 @@ public class Server{
             //need to implement random selection of next job
         }
         else {
-            Job workingJob = queue.remove(0);
-            curTime = workingJob.getArr();
+            workingJob = queue.remove(0);
             departure = curTime + workingJob.getSize();
             arr = workingJob.getArr();
         }
@@ -90,8 +89,8 @@ public class Server{
         return curTime;
     }
 
-    public void setTime(int time){
-        curTime = time;
+    public void setTime(int newTime){
+        curTime = newTime;
     }
 
     public int getDeparture(){

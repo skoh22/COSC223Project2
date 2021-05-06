@@ -63,21 +63,10 @@ public class RunSimulation {
         }
 
         //now the server is set up!
-        //first thing to do is add a new job to the queue since the server started working on a new job already
-        arrTime = generateRandom(arrProb);
-        processArrival(server);
 
-        while (server.getTime() < maxTime) {
-            //System.out.println("Queue size is: " + server.queueSize());
-            //System.out.println("arrTime is: " + arrTime);
-            if (arrTime < server.getDeparture()) { //next arrival is before next departure
-                processArrival(server); //process a new arrival
-            }
-            else { //this will keep the queue size constant
-                processDeparture(server);
-                processArrival(server);
-            }
-
+        while (server.getTime() < maxTime){
+            processDeparture(server);
+            processArrival(server);
         }
 
         System.out.println("The server processed " + processedJobs + " jobs");
@@ -85,6 +74,8 @@ public class RunSimulation {
         System.out.println("The longest wait time was: " + longestWait); //NOTE: this is the longest wait time only for jobs that were processed
 
         System.out.println("The mean response time was: " + meanResp/processedJobs);
+
+        System.out.println("The current queue looks like: ");
 
     }
 
@@ -102,7 +93,7 @@ public class RunSimulation {
         System.out.println("Type your desired p value:");
         sizeProb = kb.nextDouble();
 
-        arrProb = sizeProb/2; //NOTE: THIS IS JUST RANDOM LOL
+        //arrProb = sizeProb/2; //NOTE: THIS IS JUST RANDOM LOL
 
         ArrayList queue = new ArrayList<Job>();
         Server server;
@@ -128,21 +119,10 @@ public class RunSimulation {
         }
 
         //now the server is set up!
-        //first thing to do is add a new job to the queue since the server started working on a new job already
-        arrTime = generateRandom(arrProb);
-        processArrival(server);
 
         while (server.getTime() < 1000000) {
-            //System.out.println("Queue size is: " + server.queueSize());
-            //System.out.println("arrTime is: " + arrTime);
-            if (arrTime < server.getDeparture()) { //next arrival is before next departure
-                processArrival(server); //process a new arrival
-            }
-            else { //this will keep the queue size constant
-                processDeparture(server);
-                processArrival(server);
-            }
-
+            processDeparture(server);
+            processArrival(server);
         }
 
         System.out.println("The server processed " + processedJobs + " jobs");
@@ -170,11 +150,10 @@ public class RunSimulation {
     }
 
     public static void processArrival(Server server){
-        Job newJob = new Job(size , arrTime); //create a new job
-        server.setTime(arrTime); //set the current time to the job's arrival time
+        Job newJob = new Job(size, server.getTime());
         server.addJob(newJob); //add the job to the queue
 
-        arrTime = server.getTime() + generateRandom(arrProb); //generate information for next job
+        //arrTime = server.getTime() + generateRandom(arrProb); //generate information for next job
         size = generateRandom(sizeProb);
 
         numJobs -= 1;
