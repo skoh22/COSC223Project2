@@ -76,6 +76,12 @@ public class RunSimulation {
         System.out.println("The mean response time was: " + meanResp/processedJobs);
 
         System.out.println("The current queue looks like: ");
+        ArrayList<Job> printQueue = server.getQueue();
+        for(int k = 0; k<printQueue.size(); k++){
+            System.out.print(printQueue.get(k).getSize()+" ");
+        }
+        System.out.println();
+
 
     }
 
@@ -130,6 +136,13 @@ public class RunSimulation {
         System.out.println("The longest wait time was: " + longestWait); //NOTE: this is the longest wait time only for jobs that were processed
 
         System.out.println("The mean response time was: " + meanResp/processedJobs);
+
+        System.out.println("The current queue looks like: ");
+        ArrayList<Job> printQueue = server.getQueue();
+        for(int k = 0; k<printQueue.size(); k++){
+            System.out.print(printQueue.get(k).getSize()+" ");
+        }
+        System.out.println();
     }
 
     public static int generateRandom(double p) {

@@ -114,4 +114,6 @@ public class Server{
     }
 
     public int getArr() {return arr;}
+
+    public ArrayList<Job> getQueue() {return queue;}
 }
