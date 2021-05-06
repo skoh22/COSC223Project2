@@ -26,7 +26,7 @@ public class RunSimulation {
     public static void runSimulation1() {
         processedJobs = 0;
         sizeProb = 0.25;
-        arrProb = 0.1;
+        arrProb = 0.12;
 
         Scanner kb = new Scanner(System.in);
         System.out.println("What kind of queue would you like to test?");

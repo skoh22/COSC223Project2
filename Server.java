@@ -16,10 +16,12 @@ public class Server{
 
         if(queueSelection.equals("FIFO")){
             //set up FIFO
+            queue = new_queue;
         }
 
         else if(queueSelection.equals("Random")){
             //set up Random
+            queue = new_queue;
         }
 
         else if(queueSelection.equals("shortest")){
@@ -72,10 +74,15 @@ public class Server{
     }
 
     public void removeJob(){ //start work on the first job in the queue
-        Job workingJob = queue.remove(0);
-        curTime = workingJob.getArr();
-        departure = curTime+workingJob.getSize();
-        arr = workingJob.getArr();
+        if(queueType.equals("Random")){
+            //need to implement random selection of next job
+        }
+        else {
+            Job workingJob = queue.remove(0);
+            curTime = workingJob.getArr();
+            departure = curTime + workingJob.getSize();
+            arr = workingJob.getArr();
+        }
     }
 
 
