@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.lang.Math;
 
 public class Server{
 
@@ -76,6 +77,10 @@ public class Server{
     public void removeJob(){ //start work on the first job in the queue
         if(queueType.equals("Random")){
             //need to implement random selection of next job
+            int r = (int)(this.queue.size() * Math.random());
+            this.workingJob = (Job)this.queue.remove(r);
+            this.departure = this.curTime + this.workingJob.getSize();
+            this.arr = this.workingJob.getArr();
         }
         else {
             workingJob = queue.remove(0);
