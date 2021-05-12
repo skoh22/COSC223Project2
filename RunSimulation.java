@@ -26,13 +26,13 @@ public class RunSimulation {
     public static void runSimulation1() {
         processedJobs = 0;
         sizeProb = 0.25;
-        //arrProb = 0.12;
 
         Scanner kb = new Scanner(System.in);
         System.out.println("What kind of queue would you like to test?");
         System.out.println("(1) FIFO");
         System.out.println("(2) Random");
         System.out.println("(3) Shortest first");
+        System.out.println("(4) Kickout");
 
         String ans = kb.next();
 
@@ -57,9 +57,12 @@ public class RunSimulation {
             //set up for random
             server = new Server("Random", queue);
         }
-        else {
+        else if (ans.equals("3")) {
             server = new Server("shortest", queue);
             // set up for shortest first
+        }
+        else{
+            server = new Server("Kickout", queue);
         }
 
         //now the server is set up!
@@ -93,6 +96,7 @@ public class RunSimulation {
         System.out.println("(1) FIFO");
         System.out.println("(2) Random");
         System.out.println("(3) Shortest first");
+        System.out.println("(4) Kickout");
 
         String ans = kb.next();
 
@@ -117,9 +121,12 @@ public class RunSimulation {
             //set up for random
             server = new Server("Random", queue);
         }
-        else {
+        else if (ans.equals("3")){
             server = new Server("shortest", queue);
             // set up for shortest first
+        }
+        else{
+            server = new Server("Kickout", queue);
         }
 
         //now the server is set up!
