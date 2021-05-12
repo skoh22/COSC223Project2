@@ -65,10 +65,6 @@ public class Server{
                         break;
                     }
                 }
-                /*for(int k = 0; k<queue.size(); k++){
-                    System.out.print(queue.get(k).getSize()+" ");
-                }
-                System.out.println();*/
             }
         }
     }

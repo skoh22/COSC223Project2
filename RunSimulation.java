@@ -26,7 +26,7 @@ public class RunSimulation {
     public static void runSimulation1() {
         processedJobs = 0;
         sizeProb = 0.25;
-        arrProb = 0.12;
+        //arrProb = 0.12;
 
         Scanner kb = new Scanner(System.in);
         System.out.println("What kind of queue would you like to test?");
@@ -98,8 +98,6 @@ public class RunSimulation {
 
         System.out.println("Type your desired p value:");
         sizeProb = kb.nextDouble();
-
-        //arrProb = sizeProb/2; //NOTE: THIS IS JUST RANDOM LOL
 
         ArrayList queue = new ArrayList<Job>();
         Server server;
